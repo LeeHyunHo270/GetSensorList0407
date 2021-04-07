@@ -27,22 +27,21 @@ public class MainActivity extends AppCompatActivity {
         mTxtSensors = findViewById(R.id.txtSensors);
         //mTxtSensors.setMovementMethod(new ScrollingMovementMethod());
         mButton = findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new MyOnClickListener());}
+
+
+        private class MyOnClickListener implements View.OnClickListener {
             @Override
             public void onClick(View v) {
-                sensorMgr = (SensorManager)getSystemService(SENSOR_SERVICE);
+                sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
 
                 sensorList = sensorMgr.getSensorList(Sensor.TYPE_ALL);
 
-                mTxtSensors.append("(# Sensors: "+ sensorList.size()+")\n\n");
-                for(Sensor sensor : sensorList){
-                    mTxtSensors.append("Sensor name :" + sensor.getName() +"\n");
-                    mTxtSensors.append("Sensor name :" + sensor.getType() +"\n");
-
+                mTxtSensors.append("(# Sensors: " + sensorList.size() + ")\n\n");
+                for (Sensor sensor : sensorList) {
+                    mTxtSensors.append("Sensor name :" + sensor.getName() + "\n");
+                    mTxtSensors.append("Sensor name :" + sensor.getType() + "\n");
                 }
-
             }
-        });
-
+        }
     }
-}
